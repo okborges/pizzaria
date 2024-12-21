@@ -1,14 +1,16 @@
-import Express, { Request, Response, NextFunction } from "express";
-import "express-async-errors";
-import cors from "cors";
+import Express, { Request, Response, NextFunction } from 'express';
+import 'express-async-errors';
+import cors from 'cors';
 
-import { router } from "./routes";
+import { router } from './routes';
+import path from 'path';
 
 const app = Express();
 app.use(Express.json());
 app.use(cors());
 
 app.use(router);
+app.use('/files', Express.static(path.resolve(__dirname, '..', 'tmp')));
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
@@ -17,11 +19,11 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     });
   }
   return res.status(500).json({
-    status: "error",
-    message: "Internal Server Error",
+    status: 'error',
+    message: 'Internal Server Error',
   });
 });
 
 app.listen(3333, () => {
-  console.log("Servidor online!!!");
+  console.log('Servidor online!!!');
 });
