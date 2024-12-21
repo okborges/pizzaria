@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import e, { Request, Response } from 'express';
 import { CreateProductService } from '../../services/products/CreateProductService';
 
 class CreateProductController {
@@ -9,15 +9,21 @@ class CreateProductController {
 
     const createProductService = new CreateProductService();
 
-    const product = await createProductService.execute({
-      name,
-      price,
-      description,
-      banner,
-      category_id,
-    });
+    if (!req.file) {
+      throw new Error('Banner is required');
+    } else {
+      const { originalname, filename } = req.file;
+      console.log(filename);
+      const product = await createProductService.execute({
+        name,
+        price,
+        description,
+        banner: '',
+        category_id,
+      });
 
-    return res.json(product);
+      return res.json(product);
+    }
   }
 }
 
