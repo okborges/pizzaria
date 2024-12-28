@@ -14,7 +14,7 @@ class CreateProductController {
 
       const product = await createProductService.execute({
         name,
-        price,
+        price: Number(price), // Convert price to number
         description,
         banner,
         category_id,

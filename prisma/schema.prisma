@@ -37,7 +37,7 @@ model Category {
 model Product {
   id          String    @id @default(uuid())
   name        String
-  price       String
+  price       Int
   description String
   banner      String
   created_at  DateTime? @default(now())

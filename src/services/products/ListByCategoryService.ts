@@ -6,6 +6,14 @@ class ListByCategoryService {
       where: {
         category_id,
       },
+      select: {
+        id: true,
+        name: true,
+        price: true,
+        description: true,
+        banner: true,
+        category_id: true,
+      },
     });
     return findByCategory;
   }
