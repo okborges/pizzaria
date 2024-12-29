@@ -1,11 +1,7 @@
 import prismaClient from '../../prisma';
 
-interface CategoryRequest {
-  name: string;
-}
-
 class CreateCategoryService {
-  async execute({ name }: CategoryRequest) {
+  async execute(name: string) {
     if (name === '') {
       throw new Error('Category name cannot be empty');
     }

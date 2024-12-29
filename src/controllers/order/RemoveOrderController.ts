@@ -8,7 +8,7 @@ class RemoveOrderController {
 
     const removeOrder = new RemoveOrderService();
 
-    const order = await removeOrder.execute({ order_id });
+    const order = await removeOrder.execute(order_id);
 
     return res.json(order);
   }
