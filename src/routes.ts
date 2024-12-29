@@ -12,6 +12,7 @@ import { CreateProductController } from './controllers/product/CreateProductCont
 import { ListByCategoryController } from './controllers/product/ListByCategoryController';
 
 import { CreateOrderController } from './controllers/order/CreateOrderController';
+import { RemoveOrderController } from './controllers/order/RemoveOrderController';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
 
@@ -48,7 +49,7 @@ router.get(
 );
 
 // ROTAS DE ORDERS
-
 router.post('/order', isAuthenticated, new CreateOrderController().handle);
+router.delete('/order', isAuthenticated, new RemoveOrderController().handle);
 
 export { router };
